@@ -5,7 +5,10 @@ export default class ChatControlsManager {
   /**
    * Handle when user submits a chat message.
    */
-  public static handleSubmit(e: SubmitEvent, socket: SocketClient) {
+  public static handleSubmit(
+    e: SubmitEvent | KeyboardEvent,
+    socket: SocketClient
+  ) {
     e.preventDefault();
 
     // TODO: switch to use form instead of input
