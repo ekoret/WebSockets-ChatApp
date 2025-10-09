@@ -1,0 +1,22 @@
+{
+  "name": "socketclient-raw",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "ts:watch": "tsc --watch",
+    "ts:build": "tsc",
+    "sass:watch": "sass --watch src/styles:dist/styles/",
+    "sass:build": "sass src/styles:dist/styles/",
+    "build": "rm -rf dist && npm run ts:build && npm run sass:build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@types/node": "^24.7.0",
+    "sass": "^1.93.2",
+    "typescript": "^5.9.3"
+  }
+}
