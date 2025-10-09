@@ -73,23 +73,35 @@ body {
   margin: 0 auto;
   margin-top: 2rem;
   max-width: 600px;
-
-  .display-name {
+  .chat-settings {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    margin: 1rem 0;
-    gap: 12px;
 
-    p {
-      font-size: 0.9rem;
-      font-weight: bold;
+    #clear-chat {
+      max-height: 2.3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    input {
-      border-radius: 4px;
-      border: none;
-      padding: 0.5rem 0.4rem;
-      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    .display-name {
+      display: flex;
+      align-items: center;
+      margin: 1rem 0;
+      gap: 12px;
+
+      p {
+        font-size: 0.9rem;
+        font-weight: bold;
+      }
+
+      input {
+        border-radius: 4px;
+        border: none;
+        padding: 0.5rem 0.4rem;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+      }
     }
   }
 

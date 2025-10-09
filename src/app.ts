@@ -56,3 +56,10 @@ document
     socket.close();
     StateManager.updateSocketStateText("Disconnected");
   });
+
+// Setup clear chat
+document
+  .querySelector<HTMLButtonElement>("#clear-chat")
+  ?.addEventListener("click", () => {
+    ChatControlsManager.clearChat();
+  });

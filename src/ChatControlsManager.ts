@@ -32,6 +32,12 @@ export default class ChatControlsManager {
     ChatControlsManager.clearTextArea();
   }
 
+  public static clearChat() {
+    const chatWindow = ElementFinder.getChatWindow();
+
+    if (chatWindow) chatWindow.innerHTML = "";
+  }
+
   /**
    * Clear the chat text are input
    */
