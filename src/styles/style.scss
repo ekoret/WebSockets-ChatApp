@@ -101,6 +101,12 @@ body.disconnected {
     }
     .chat-window {
       background: $disconnected-input-bg;
+
+      & > p {
+        &:hover {
+          background: darken($disconnected-input-bg, 10%);
+        }
+      }
     }
     .chat-controls {
       textarea {
@@ -132,6 +138,12 @@ body.connected {
     }
     .chat-window {
       background: $connected-input-bg;
+
+      & > p {
+        &:hover {
+          background: darken($connected-input-bg, 10%);
+        }
+      }
     }
     .chat-controls {
       textarea {
