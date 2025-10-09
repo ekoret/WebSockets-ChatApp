@@ -15,5 +15,14 @@
     padding: 0.5rem 0.5rem;
     transition: background 0.3s;
     border-radius: 4px;
+
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .timestamp {
+    font-size: 0.8rem;
+    color: #888;
+    margin-left: 1rem;
   }
 }

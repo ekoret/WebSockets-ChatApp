@@ -1,4 +1,4 @@
-import ChatWindowManager from "./ChatWindowManager.js";
+import MessageManager from "./MessageManager.js";
 import StateManager from "./StateManager.js";
 import type User from "./User.js";
 
@@ -69,17 +69,30 @@ export default class SocketClient {
 
   public listenOnMessage() {
     this._socket?.addEventListener("message", (event) => {
-      ChatWindowManager.addMessageToChatWindow(event.data);
+      const data: ServerMessage = JSON.parse(event.data);
+
+      switch (data.type) {
+        case "connect":
+          MessageManager.handleConnectMessage(data);
+          break;
+        case "disconnect":
+          MessageManager.handleDisconnectMessage(data);
+          break;
+        case "message":
+          MessageManager.handleIncomingMessage(data);
+          break;
+        default:
+          console.error("Unknown message type:", data.type);
+          return;
+      }
     });
   }
 
   public listenOnError() {
     this._socket?.addEventListener("error", (event) => {
-      ChatWindowManager.addMessageToChatWindow(
-        "There was an error connecting.. Try again later."
-      );
+      MessageManager.handleErrorMessage();
 
-      StateManager.updateSocketStateText("Disconnected");
+      StateManager.updateDisconnectedUI();
     });
   }
 }
