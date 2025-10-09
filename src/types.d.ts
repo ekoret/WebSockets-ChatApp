@@ -6,3 +6,10 @@ type WebSocketSendData =
   | ArrayBufferView<ArrayBufferLike>;
 
 type SocketState = "Connected" | "Disconnected";
+
+interface ServerMessage {
+  type: "connect" | "disconnect" | "message" | "error";
+  username?: string;
+  message: string;
+  sentAt: number;
+}
