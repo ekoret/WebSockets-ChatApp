@@ -74,4 +74,20 @@ export default class ElementFinder {
 
     return chatWindow;
   }
+
+  public static getClearChatButton() {
+    const button = document.querySelector<HTMLButtonElement>("#clear-chat");
+
+    if (!button) throw new MissingElementError("Missing clear chat button");
+
+    return button;
+  }
+
+  public static getChatControlsForm() {
+    const form = document.querySelector<HTMLFormElement>("form.chat-controls");
+
+    if (!form) throw new MissingElementError("Missing chat controls form");
+
+    return form;
+  }
 }
