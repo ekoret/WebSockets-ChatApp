@@ -54,7 +54,6 @@ document
   .querySelector<HTMLButtonElement>("#disconnect")
   ?.addEventListener("click", () => {
     socket.close();
-    StateManager.updateSocketStateText("Disconnected");
   });
 
 // Setup clear chat
