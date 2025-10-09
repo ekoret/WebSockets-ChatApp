@@ -2,24 +2,17 @@ import ChatControlsManager from "./ChatControlsManager.js";
 import SocketClient from "./SocketClient.js";
 import StateManager from "./StateManager.js";
 import User from "./User.js";
-import { MissingElementError, NoDisplayNameSetError } from "./CustomError.js";
+import { MissingElementError } from "./CustomError.js";
 import ElementFinder from "./ElementFinder.js";
 
 const socket = new SocketClient();
 
-/**
- * Handle enabling/disabling the
- * connect button depending if
- * the display name is set or not.
- */
+// Setup display name input listener
 ElementFinder.getDisplayNameInput().addEventListener("input", (e) =>
   StateManager.handleInputChange(e)
 );
 
-/**
- * Handle when user enters submits a
- * chat message.
- */
+// Setup chat form submit
 ElementFinder.getChatControlsForm().addEventListener("submit", (e) => {
   ChatControlsManager.handleSubmit(e, socket);
 });
@@ -52,6 +45,7 @@ ElementFinder.getClearChatButton().addEventListener("click", () => {
   ChatControlsManager.clearChat();
 });
 
+// Handle pressing Enter inside the chat textarea input
 ElementFinder.getChatTextareaInput().addEventListener("keydown", (e) => {
   if (e.key === "Enter" && !e.shiftKey) {
     ChatControlsManager.handleSubmit(e, socket);
