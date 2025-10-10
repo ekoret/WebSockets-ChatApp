@@ -8,14 +8,14 @@ export default class StateManager {
   }
 
   public static getUsername() {
-    return document.querySelector<HTMLInputElement>(".display-name input")
-      ?.value;
+    const input = ElementFinder.getDisplayNameInput();
+
+    if (input) return input.value;
   }
 
   public static updateConnectedUI() {
     this.toggleBodyConnectedClass(true);
     this.toggleConnectionControls(true);
-    this.updateSocketStateText("Connected");
     this.setDisplayNameInputEnabled(false);
     this.setChatControlsEnabled(true);
   }
@@ -23,7 +23,6 @@ export default class StateManager {
   public static updateDisconnectedUI() {
     this.toggleBodyConnectedClass(false);
     this.toggleConnectionControls(false);
-    this.updateSocketStateText("Disconnected");
     this.setDisplayNameInputEnabled(true);
     this.setChatControlsEnabled(false);
   }

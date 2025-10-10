@@ -44,6 +44,8 @@ $connection-state-size: 24px;
     left: 60%;
     top: 60%;
     z-index: 2;
+
+    transition: background 0.3s ease-in-out 0.1s;
   }
 
   .connection-ring {
@@ -65,6 +67,9 @@ body.disconnected {
 }
 
 body.connected {
+  #user-details {
+    background: $connected-button-bg;
+  }
   #connection-state {
     background: $connected-state-bg;
   }

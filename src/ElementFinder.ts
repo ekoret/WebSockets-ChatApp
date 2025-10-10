@@ -30,7 +30,7 @@ export default class ElementFinder {
    */
   public static getDisplayNameInput() {
     const input = document.querySelector<HTMLInputElement>(
-      ".display-name input"
+      "#display-name-modal input"
     );
 
     if (!input) throw new MissingElementError("Missing display name input");
