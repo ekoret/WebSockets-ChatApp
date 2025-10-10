@@ -8,9 +8,10 @@
     <link rel="stylesheet" href="dist/styles/style.css" />
   </head>
   <body class="disconnected">
+    <header id="main-header">
+      <h1>Chat</h1>
+    </header>
     <main>
-      <h1>WebSockets</h1>
-      <p>Chat over WebSockets</p>
       <div class="state">
         WebSocket State: <span id="connection-state">Disconnected</span>
       </div>
@@ -37,7 +38,11 @@
         </form>
       </div>
     </main>
+    <footer id="main-footer">
+      <small>Made by ekoret</small>
+    </footer>
 
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <script type="module" src="dist/app.js"></script>
   </body>
 </html>
