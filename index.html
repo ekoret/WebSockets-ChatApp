@@ -8,17 +8,24 @@
     <link rel="stylesheet" href="dist/styles/style.css" />
   </head>
   <body class="disconnected">
-    <header id="main-header">
-      <h1>Chat</h1>
-    </header>
-    <main>
+    <aside id="sidebar">
+      <h1>SocketTalk</h1>
+      <nav>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Direct Messages</a></li>
+          <li><a href="#">Settings</a></li>
+        </ul>
+      </nav>
       <div class="state">
-        WebSocket State: <span id="connection-state">Disconnected</span>
+        You are currently <span id="connection-state">Disconnected</span>
       </div>
       <div class="connection-controls">
         <button disabled id="connect" type="button">Connect</button>
         <button disabled id="disconnect" type="button">Disconnect</button>
       </div>
+    </aside>
+    <main>
       <div class="chat">
         <div class="chat-settings">
           <div class="display-name">
@@ -38,9 +45,6 @@
         </form>
       </div>
     </main>
-    <footer id="main-footer">
-      <small>Made by ekoret</small>
-    </footer>
 
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <script type="module" src="dist/app.js"></script>

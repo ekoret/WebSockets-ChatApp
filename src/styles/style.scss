@@ -5,6 +5,7 @@
 @use "chat-window";
 @use "chat-settings";
 @use "chat-controls";
+@use "sidebar";
 
 @use "disconnected-state";
 
@@ -43,25 +44,33 @@ input {
 
 body {
   text-align: center;
-  min-height: 100vh;
+  height: 100vh;
 
+  padding: 1.5rem;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+
+  main {
+    background: #333;
+    border-radius: 8px;
+    flex: 1;
+    padding: 1rem;
+  }
 }
 
 .state {
-  margin: 1rem 0;
+  margin-top: auto;
+  font-size: 0.9rem;
   #connection-state {
     font-weight: bold;
+    text-transform: lowercase;
   }
 }
 
 .chat {
-  min-width: 350px;
   margin: 0 auto;
-  margin-top: 2rem;
-  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 body.disconnected {
@@ -106,6 +115,9 @@ body.disconnected {
 }
 
 body.connected {
+  main {
+    background: #022a66;
+  }
   background: $connected-body-bg;
   button {
     background: $connected-button-bg;
