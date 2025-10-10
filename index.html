@@ -17,8 +17,16 @@
           <li><a href="#">Settings</a></li>
         </ul>
       </nav>
-      <div class="state">
-        You are currently <span id="connection-state">Disconnected</span>
+      <div id="user-details">
+        <div class="profile-picture">
+          <img src="https://placecats.com/200/200" />
+          <span class="connection-ring"></span>
+          <span id="connection-state"></span>
+        </div>
+        <div class="user-content">
+          <small>Logged in as</small>
+          <p>ekoret</p>
+        </div>
       </div>
       <div class="connection-controls">
         <button disabled id="connect" type="button">Connect</button>

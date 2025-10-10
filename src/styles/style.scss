@@ -6,6 +6,7 @@
 @use "chat-settings";
 @use "chat-controls";
 @use "sidebar";
+@use "user-details";
 
 @use "disconnected-state";
 
@@ -54,15 +55,6 @@ body {
     border-radius: 8px;
     flex: 1;
     padding: 1rem;
-  }
-}
-
-.state {
-  margin-top: auto;
-  font-size: 0.9rem;
-  #connection-state {
-    font-weight: bold;
-    text-transform: lowercase;
   }
 }
 
