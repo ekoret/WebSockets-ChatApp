@@ -62,6 +62,11 @@ body {
 
 .hidden {
   display: none;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  user-select: none;
+  z-index: -1;
 }
 
 .chat {
