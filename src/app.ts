@@ -55,3 +55,8 @@ ElementFinder.getChatTextareaInput().addEventListener("keydown", (e) => {
     ChatControlsManager.handleSubmit(e, socket);
   }
 });
+
+// Handle set display name click
+ElementFinder.getSetDisplayNameButton().addEventListener("click", () => {
+  StateManager.toggleModalDisplay();
+});

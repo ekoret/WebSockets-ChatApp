@@ -90,4 +90,14 @@ export default class ElementFinder {
 
     return form;
   }
+
+  public static getSetDisplayNameButton() {
+    const button =
+      document.querySelector<HTMLButtonElement>("#set-display-name");
+
+    if (!button)
+      throw new MissingElementError("Missing set display name button");
+
+    return button;
+  }
 }

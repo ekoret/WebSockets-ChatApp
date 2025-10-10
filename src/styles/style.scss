@@ -7,6 +7,8 @@
 @use "chat-controls";
 @use "sidebar";
 @use "user-details";
+@use "user-settings";
+@use "display-name-modal";
 
 @use "disconnected-state";
 
@@ -56,6 +58,10 @@ body {
     flex: 1;
     padding: 1rem;
   }
+}
+
+.hidden {
+  display: none;
 }
 
 .chat {

@@ -1,3 +1,4 @@
+import { MissingElementError } from "./CustomError.js";
 import ElementFinder from "./ElementFinder.js";
 
 export default class StateManager {
@@ -83,5 +84,13 @@ export default class StateManager {
       body?.classList.remove("connected");
       body?.classList.add("disconnected");
     }
+  }
+
+  public static toggleModalDisplay() {
+    const displayNameModal = document.getElementById("display-name-modal");
+
+    if (!displayNameModal) throw new MissingElementError("Missing modal");
+
+    displayNameModal.classList.toggle("hidden");
   }
 }
