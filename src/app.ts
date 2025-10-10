@@ -6,7 +6,8 @@ import { MissingElementError } from "./CustomError.js";
 import ElementFinder from "./ElementFinder.js";
 
 // Initialize icons
-lucide.createIcons();
+// @ts-ignore
+lucide.createIcons(); // loaded from CDN
 
 const socket = new SocketClient();
 
