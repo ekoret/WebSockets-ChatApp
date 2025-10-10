@@ -1,16 +1,6 @@
-$connected-input-bg: #192e5a;
-$connected-body-bg: #091e4d;
-$connected-state: rgb(140, 229, 167);
-$connected-button-bg: #041436;
-$connected-button-hover-bg: rgb(9, 32, 112);
-
-$disconnected-input-bg: #444;
-$disconnected-body-bg: #222;
-$disconnected-state: rgb(222, 92, 92);
-$disconnected-button-bg: #444;
-$disconnected-button-hover-bg: #333;
-$disconnected-button-disabled-bg: #333;
-
+@use "variables" as *;
+@use "header";
+@use "footer";
 @use "connection-controls";
 @use "chat-window";
 @use "chat-settings";
@@ -52,13 +42,12 @@ input {
 }
 
 body {
-  padding: 1rem;
   text-align: center;
   min-height: 100vh;
 
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
 }
 
 .state {

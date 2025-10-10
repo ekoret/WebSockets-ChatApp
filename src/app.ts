@@ -5,6 +5,9 @@ import User from "./User.js";
 import { MissingElementError } from "./CustomError.js";
 import ElementFinder from "./ElementFinder.js";
 
+// Initialize icons
+lucide.createIcons();
+
 const socket = new SocketClient();
 
 // Setup display name input listener
