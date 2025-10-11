@@ -8,12 +8,34 @@ function useChatWindowAutoScroll(
   chatWindowRef: ChatWindowRef
 ): boolean {
   useEffect(() => {
-    if (!chatMessages) return;
-    if (!chatWindowRef.current) return;
+    const chatWindowEl = chatWindowRef.current;
 
-    console.log("Scrolling down");
-    chatWindowRef.current.scrollTop = chatWindowRef.current.scrollHeight;
+    if (!chatMessages) return;
+    if (!chatWindowEl) return;
+
+    const scrollBottom =
+      chatWindowEl.scrollHeight -
+      chatWindowEl.clientHeight -
+      chatWindowEl.scrollTop;
+
+    if (scrollBottom <= 100) {
+      chatWindowEl.scroll({
+        top: chatWindowEl.scrollHeight,
+        behavior: "smooth",
+      });
+    }
   }, [chatMessages]);
+
+  // Handles first load
+  useEffect(() => {
+    const chatWindowEl = chatWindowRef.current;
+    if (!chatMessages) return;
+    if (!chatWindowEl) return;
+    chatWindowEl.scroll({
+      top: chatWindowEl.scrollHeight,
+      behavior: "instant",
+    });
+  }, []);
 
   return true;
 }
