@@ -1,12 +1,18 @@
+import { useRef } from "react";
 import type { IChatMessage } from "../../pages/Chat";
+import useChatWindowAutoScroll from "../../hooks/useChatWindowAutoScroll";
 
 interface ChatWindowProps {
   chatMessages: IChatMessage[];
 }
 
 const ChatWindow = ({ chatMessages }: ChatWindowProps) => {
+  const chatWindowRef = useRef<HTMLDivElement>(null);
+
+  useChatWindowAutoScroll(chatMessages, chatWindowRef);
+
   return (
-    <div className="flex-1 overflow-y-auto mb-4">
+    <div ref={chatWindowRef} className="flex-1 overflow-y-auto mb-4">
       {chatMessages.map((message, index) => {
         return (
           <div key={index} className="mb-4">
