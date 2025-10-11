@@ -1,5 +1,15 @@
+import ChatControls from "../components/Chat/ChatControls";
+import ChatSettings from "../components/Chat/ChatSettings";
+import ChatWindow from "../components/Chat/ChatWindow";
+
 function Chat() {
-  return <div>Chat</div>;
+  return (
+    <div className="h-full flex flex-col">
+      <ChatSettings />
+      <ChatWindow />
+      <ChatControls />
+    </div>
+  );
 }
 
 export default Chat;
