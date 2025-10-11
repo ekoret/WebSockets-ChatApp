@@ -9,7 +9,7 @@ interface LayoutProps {
 function Layout({ children }: LayoutProps) {
   const user: IUserState = {
     username: "ekoret",
-    connected: false,
+    connected: true,
     loggedInAt: null,
   };
 
