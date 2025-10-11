@@ -1,6 +1,5 @@
 import UserDetails from "./UserDetails";
 import ThemeToggle from "./ThemeToggle";
-import ConnectionButtons from "./ConnectionButtons";
 import { Link } from "@tanstack/react-router";
 
 function Sidebar() {
@@ -13,7 +12,6 @@ function Sidebar() {
         <Link to="/settings">Settings</Link>
       </nav>
       <div className="mt-auto flex flex-col gap-4">
-        <ConnectionButtons />
         <ThemeToggle />
         <UserDetails />
       </div>
