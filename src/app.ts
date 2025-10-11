@@ -3,6 +3,7 @@ import SocketClient from "./SocketClient.js";
 import StateManager from "./StateManager.js";
 import User from "./User.js";
 import { MissingElementError, NoDisplayNameSetError } from "./CustomError.js";
+import ElementFinder from "./ElementFinder.js";
 
 const socket = new SocketClient();
 
@@ -54,5 +55,17 @@ document
   .querySelector<HTMLButtonElement>("#disconnect")
   ?.addEventListener("click", () => {
     socket.close();
-    StateManager.updateSocketStateText("Disconnected");
   });
+
+// Setup clear chat
+document
+  .querySelector<HTMLButtonElement>("#clear-chat")
+  ?.addEventListener("click", () => {
+    ChatControlsManager.clearChat();
+  });
+
+ElementFinder.getChatTextareaInput().addEventListener("keydown", (e) => {
+  if (e.key === "Enter" && !e.shiftKey) {
+    ChatControlsManager.handleSubmit(e, socket);
+  }
+});

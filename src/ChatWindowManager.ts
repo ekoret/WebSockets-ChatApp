@@ -5,7 +5,7 @@ export default class ChatWindowManager {
     const chatWindow = ElementFinder.getChatWindow();
 
     const newMessage = document.createElement("p");
-    newMessage.textContent = message;
+    newMessage.innerHTML = message;
 
     chatWindow.appendChild(newMessage);
   }

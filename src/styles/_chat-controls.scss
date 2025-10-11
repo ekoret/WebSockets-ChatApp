@@ -1,0 +1,17 @@
+.chat-controls {
+  display: flex;
+  margin-top: 0.5rem;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+  button {
+    border-radius: 8px 0px 0px 8px;
+  }
+
+  textarea {
+    flex: 1;
+    border: none;
+    border-radius: 0px 8px 8px 0px;
+    padding: 0.5rem 0.5rem;
+    font-size: 0.9rem;
+  }
+}
