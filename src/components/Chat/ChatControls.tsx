@@ -12,7 +12,7 @@ const ChatControls = ({
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("handling");
+
     const formEl = e.target as HTMLFormElement;
 
     const form = new FormData(formEl);
