@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import type { IChatMessage } from "../../pages/Chat";
 import { AppContext } from "../../contexts/AppContext";
 
@@ -10,6 +10,8 @@ const ChatControls = ({
   const data = useContext(AppContext);
   const user = data?.globalData.user;
   const formRef = useRef<HTMLFormElement>(null);
+
+  const [textareaValue, setTextareaValue] = useState<string>("");
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -26,6 +28,8 @@ const ChatControls = ({
       ...prevMessages,
       { sender: "ekoret", message: message.toString() },
     ]);
+
+    setTextareaValue("");
   };
 
   useEffect(() => {
@@ -58,9 +62,11 @@ const ChatControls = ({
         Send
       </button>
       <textarea
+        onChange={(e) => setTextareaValue(e.target.value)}
         disabled={!user?.connected}
         name="message"
         className="bg-bg-base rounded-xl text-white dark:bg-white dark:text-bg-base w-full h-full p-2"
+        value={textareaValue}
       ></textarea>
     </form>
   );
