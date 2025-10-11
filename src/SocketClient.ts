@@ -62,8 +62,6 @@ export default class SocketClient {
   public listenOnClose() {
     this._socket?.addEventListener("close", (event) => {
       console.log("WebSocket connection closed.");
-      // Update UI
-      StateManager.updateSocketStateText("Disconnected");
     });
   }
 

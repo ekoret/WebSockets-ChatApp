@@ -1,0 +1,21 @@
+@use "variables" as *;
+
+#main-footer {
+  min-height: $footer-height;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+body {
+  &.disconnected {
+    #main-footer {
+      background-color: $disconnected-footer-bg;
+    }
+  }
+  &.connected {
+    #main-footer {
+      background-color: $connected-footer-bg;
+    }
+  }
+}

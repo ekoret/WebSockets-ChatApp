@@ -1,0 +1,7 @@
+@use "variables" as *;
+
+#main-header {
+  background-color: $header-bg;
+  color: $header-text-color;
+  text-align: left;
+}

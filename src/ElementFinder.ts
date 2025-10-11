@@ -30,7 +30,7 @@ export default class ElementFinder {
    */
   public static getDisplayNameInput() {
     const input = document.querySelector<HTMLInputElement>(
-      ".display-name input"
+      "#display-name-modal input"
     );
 
     if (!input) throw new MissingElementError("Missing display name input");
@@ -73,5 +73,31 @@ export default class ElementFinder {
     if (!chatWindow) throw new MissingElementError("Missing chat window");
 
     return chatWindow;
+  }
+
+  public static getClearChatButton() {
+    const button = document.querySelector<HTMLButtonElement>("#clear-chat");
+
+    if (!button) throw new MissingElementError("Missing clear chat button");
+
+    return button;
+  }
+
+  public static getChatControlsForm() {
+    const form = document.querySelector<HTMLFormElement>("form.chat-controls");
+
+    if (!form) throw new MissingElementError("Missing chat controls form");
+
+    return form;
+  }
+
+  public static getSetDisplayNameButton() {
+    const button =
+      document.querySelector<HTMLButtonElement>("#set-display-name");
+
+    if (!button)
+      throw new MissingElementError("Missing set display name button");
+
+    return button;
   }
 }

@@ -1,0 +1,38 @@
+#sidebar {
+  min-width: 250px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  padding-left: unset;
+  padding-bottom: unset;
+
+  h1 {
+    margin-bottom: 2rem;
+  }
+
+  nav {
+    ul {
+      list-style-type: none;
+      text-align: left;
+      li {
+        margin-bottom: 1rem;
+        a {
+          font-size: 0.9rem;
+          font-weight: bold;
+          display: block;
+          width: 100%;
+          height: 100%;
+          text-decoration: none;
+          padding: 1rem 1rem;
+          border-radius: 8px;
+
+          transition: background 0.2s ease-in-out 0s;
+
+          &:hover {
+            background: #444;
+          }
+        }
+      }
+    }
+  }
+}

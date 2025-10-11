@@ -1,0 +1,50 @@
+@use "variables" as *;
+
+$modal-bg: #666;
+$chevron-size: 14px;
+
+#display-name-modal:not(.hidden) {
+  background: $modal-bg;
+  border-radius: 8px;
+  text-align: left;
+  padding: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  position: absolute;
+  z-index: 2;
+  max-width: 300px;
+  top: 66%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  width: 80%;
+  margin: 0 auto;
+  margin-bottom: 0.75rem;
+
+  // TODO: issue box shadow not showing on modal
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+
+  input {
+    border: none;
+    border-radius: 4px;
+    background: #333;
+    color: #fff;
+    padding: 0.3rem 0.5rem;
+  }
+
+  &::after {
+    content: "";
+    background: $modal-bg;
+
+    transform: translate(-50%, -50%) rotate(45deg);
+
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    height: $chevron-size;
+    width: $chevron-size;
+
+    z-index: 3;
+  }
+}

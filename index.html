@@ -8,26 +8,43 @@
     <link rel="stylesheet" href="dist/styles/style.css" />
   </head>
   <body class="disconnected">
-    <main>
-      <h1>WebSockets</h1>
-      <p>Chat over WebSockets</p>
-      <div class="state">
-        WebSocket State: <span id="connection-state">Disconnected</span>
+    <aside id="sidebar">
+      <h1>SocketTalk</h1>
+      <nav>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Direct Messages</a></li>
+          <li><a href="#">Settings</a></li>
+        </ul>
+      </nav>
+      <div class="user-settings">
+        <div id="display-name-modal" class="hidden">
+          <small>Display Name</small>
+          <input maxlength="20" />
+        </div>
+        <div class="display-name">
+          <button id="set-display-name" type="button">Set Display Name</button>
+        </div>
+      </div>
+      <div id="user-details">
+        <div class="profile-picture">
+          <img src="https://placecats.com/200/200" />
+          <span class="connection-ring"></span>
+          <span id="connection-state"></span>
+        </div>
+        <div class="user-content">
+          <small>Logged in as</small>
+          <p>ekoret</p>
+        </div>
       </div>
       <div class="connection-controls">
         <button disabled id="connect" type="button">Connect</button>
         <button disabled id="disconnect" type="button">Disconnect</button>
       </div>
+    </aside>
+    <main>
       <div class="chat">
         <div class="chat-settings">
-          <div class="display-name">
-            <p
-              title="Display name must be set before connecting. When connected, you will be unable to change your display name."
-            >
-              Display Name:
-            </p>
-            <input maxlength="20" />
-          </div>
           <button id="clear-chat" type="button">Clear Chat</button>
         </div>
         <div class="chat-window"></div>
@@ -38,6 +55,7 @@
       </div>
     </main>
 
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <script type="module" src="dist/app.js"></script>
   </body>
 </html>
