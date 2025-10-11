@@ -1,4 +1,4 @@
-import imgUrl from "../public/neo-banana-cat.jpg";
+import imgUrl from "./assets/neo-banana-cat.jpg";
 
 function UserDetails() {
   return (
