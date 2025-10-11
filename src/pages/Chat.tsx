@@ -85,7 +85,7 @@ function Chat() {
 
   return (
     <div className="h-full flex flex-col">
-      <ChatSettings />
+      <ChatSettings setChatMessages={setChatMessages} />
       <ChatWindow chatMessages={chatMessages} />
       <ChatControls />
     </div>

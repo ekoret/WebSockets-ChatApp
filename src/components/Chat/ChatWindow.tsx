@@ -7,9 +7,9 @@ interface ChatWindowProps {
 const ChatWindow = ({ chatMessages }: ChatWindowProps) => {
   return (
     <div className="flex-1 overflow-y-auto mb-4">
-      {chatMessages.map((message) => {
+      {chatMessages.map((message, index) => {
         return (
-          <div className="mb-4">
+          <div key={index} className="mb-4">
             <h3 className="font-bold">{message.sender} says:</h3>
             <p>{message.message}</p>
           </div>
