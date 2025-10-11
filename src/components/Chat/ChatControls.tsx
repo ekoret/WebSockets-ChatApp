@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useRef } from "react";
 import type { IChatMessage } from "../../pages/Chat";
 import { AppContext } from "../../contexts/AppContext";
 
@@ -9,6 +9,7 @@ const ChatControls = ({
 }) => {
   const data = useContext(AppContext);
   const user = data?.globalData.user;
+  const formRef = useRef<HTMLFormElement>(null);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -26,8 +27,26 @@ const ChatControls = ({
       { sender: "ekoret", message: message.toString() },
     ]);
   };
+
+  useEffect(() => {
+    const formEl = formRef.current;
+
+    if (!formEl) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        formEl.requestSubmit();
+      }
+    };
+
+    formEl.addEventListener("keydown", handleKeyDown);
+    return () => formEl.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
   return (
     <form
+      ref={formRef}
       onSubmit={(e) => handleSubmit(e)}
       className="min-h-[100px] flex gap-2"
     >
