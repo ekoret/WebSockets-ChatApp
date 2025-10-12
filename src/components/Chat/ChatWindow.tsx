@@ -12,10 +12,13 @@ const ChatWindow = ({ chatMessages }: ChatWindowProps) => {
   useChatWindowAutoScroll(chatMessages, chatWindowRef);
 
   return (
-    <div ref={chatWindowRef} className="flex-1 overflow-y-auto mb-4">
-      {chatMessages.map((message, index) => {
+    <div
+      ref={chatWindowRef}
+      className="flex-1 overflow-y-auto mb-4 flex flex-col-reverse gap-4"
+    >
+      {[...chatMessages].reverse().map((message, index) => {
         return (
-          <div key={index} className="mb-4">
+          <div key={index}>
             <h3 className="font-bold">{message.sender} says:</h3>
             <p>{message.message}</p>
           </div>
