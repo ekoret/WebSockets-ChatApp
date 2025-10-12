@@ -28,7 +28,10 @@ function RootComponent() {
     <AppContext value={{ globalData, setGlobalData }}>
       <div className="flex h-full gap-4">
         <Sidebar />
-        <main className="bg-surface text-text-base flex-1 rounded-4xl p-6">
+        <main
+          className="bg-surface text-text-base
+        shadow-[inset_-10px_20px_80px_8px_rgba(0,0,0,0.35)] flex-1 rounded-4xl p-6"
+        >
           <Outlet />
         </main>
       </div>
