@@ -1,14 +1,13 @@
-import * as React from "react";
 import {
   createRootRouteWithContext,
   Outlet,
   redirect,
 } from "@tanstack/react-router";
-import { AppContext, type IUserState } from "../contexts/AppContext";
 import Sidebar from "../components/Sidebar";
+import type User from "../classes/User";
 
 interface GlobalRouterContext {
-  user: IUserState | null;
+  user: User | null;
 }
 
 export const Route = createRootRouteWithContext<GlobalRouterContext>()({
@@ -32,18 +31,15 @@ export const Route = createRootRouteWithContext<GlobalRouterContext>()({
 });
 
 function RootComponent() {
-  const [globalData, setGlobalData] = React.useState({});
   return (
-    <AppContext value={{ globalData, setGlobalData }}>
-      <div className="flex h-full gap-4">
-        <Sidebar />
-        <main
-          className="bg-surface text-text-base
+    <div className="flex h-full gap-4">
+      <Sidebar />
+      <main
+        className="bg-surface text-text-base
           shadow-[inset_-10px_20px_80px_8px_rgba(0,0,0,0.35)] flex-1 rounded-4xl p-6"
-        >
-          <Outlet />
-        </main>
-      </div>
-    </AppContext>
+      >
+        <Outlet />
+      </main>
+    </div>
   );
 }

@@ -1,4 +1,12 @@
+import { useNavigate } from "@tanstack/react-router";
+import { AppContext, type IGlobalData } from "../contexts/AppContext";
+import { useContext } from "react";
+import User from "../classes/User";
+
 const Login = () => {
+  const context = useContext(AppContext);
+  const navigate = useNavigate();
+
   const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -6,10 +14,21 @@ const Login = () => {
 
     const form = new FormData(formEl);
 
-    const username = form.get("username");
-    const password = form.get("password");
+    const username = form.get("username") as string;
+    const password = form.get("password") as string;
 
-    console.log(username, password);
+    const updatedGlobalData: IGlobalData = {
+      user: new User(username, password),
+    };
+
+    context?.setGlobalData((prev) => ({
+      ...prev,
+      ...updatedGlobalData,
+    }));
+
+    navigate({
+      to: "/",
+    });
   };
 
   return (

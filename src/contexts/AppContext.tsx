@@ -1,4 +1,5 @@
 import { createContext, type Dispatch, type SetStateAction } from "react";
+import type User from "../classes/User";
 
 export interface IAppContext {
   globalData: IGlobalData;
@@ -6,13 +7,7 @@ export interface IAppContext {
 }
 
 export interface IGlobalData {
-  user?: IUserState;
-}
-
-export interface IUserState {
-  username: string | null;
-  connected: boolean;
-  loggedInAt: Date | null;
+  user?: User;
 }
 
 export const AppContext = createContext<IAppContext | null>(null);
