@@ -26,14 +26,6 @@ const Navbar = () => {
     },
   ];
 
-  const loggedOutNavLinks = [
-    {
-      name: "Login",
-      icon: MessageCircle,
-      to: "/login",
-    },
-  ];
-
   const navIconClasses = "max-w-[24px]";
   const navLinkClasses =
     "flex gap-4 items-center transition-colors hover:text-amber-400 dark:hover:text-indigo-400";
