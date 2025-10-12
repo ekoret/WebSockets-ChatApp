@@ -1,6 +1,11 @@
+import { useContext } from "react";
 import imgUrl from "../assets/neo-banana-cat.jpg";
+import { AppContext } from "../contexts/AppContext";
 
 function UserDetails() {
+  const context = useContext(AppContext);
+  const user = context?.globalData.user;
+
   return (
     <div className="bg-user-details-bg rounded py-2 px-4 flex gap-4">
       <div>
@@ -8,7 +13,7 @@ function UserDetails() {
       </div>
       <div>
         <small>Logged in as</small>
-        <h3>ekoret</h3>
+        <h3>{user?.username}</h3>
       </div>
     </div>
   );
