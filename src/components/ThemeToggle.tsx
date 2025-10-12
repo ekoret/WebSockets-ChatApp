@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Sun, Moon } from "lucide-react";
+import AppIcon from "./AppIcon";
 
 export default function ThemeToggle() {
   const [theme, setTheme] = useState("light");
@@ -16,11 +17,7 @@ export default function ThemeToggle() {
         className="aspect-square w-8 flex items-center justify-center
              rounded hover:cursor-pointer"
       >
-        {theme === "dark" ? (
-          <Sun className="text-neutral-300 h-full w-full hover:text-amber-300 transition-colors" />
-        ) : (
-          <Moon className="text-neutral-300 h-full w-full hover:text-indigo-300 transition-colors" />
-        )}
+        {theme === "dark" ? <AppIcon Icon={Sun} /> : <AppIcon Icon={Moon} />}
       </button>
     </>
   );
