@@ -40,20 +40,9 @@ const Navbar = () => {
 
   return (
     <>
-      {user ? (
+      {user && (
         <nav className="flex flex-col gap-8">
           {loggedInNavLinks.map((link) => {
-            return (
-              <Link key={link.name} to={link.to} className={navLinkClasses}>
-                <AppIcon Icon={link.icon} className={navIconClasses} />
-                {link.name}
-              </Link>
-            );
-          })}
-        </nav>
-      ) : (
-        <nav className="flex flex-col gap-8">
-          {loggedOutNavLinks.map((link) => {
             return (
               <Link key={link.name} to={link.to} className={navLinkClasses}>
                 <AppIcon Icon={link.icon} className={navIconClasses} />

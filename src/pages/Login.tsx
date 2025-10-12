@@ -20,7 +20,7 @@ const Login = () => {
           type="password"
         />
         <button
-          className="bg-bg-base p-4 rounded-xl text-white text-lg font-bold"
+          className="bg-bg-base p-4 rounded-xl text-white text-lg font-bold dark:bg-white dark:text-bg-base"
           type="submit"
         >
           Login
