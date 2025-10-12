@@ -8,7 +8,7 @@ function App() {
   const user = globalData.user;
   return (
     <AppContext value={{ globalData, setGlobalData }}>
-      <RouterProvider router={router} context={{ user }} />;
+      <RouterProvider router={router} context={{ user }} />
     </AppContext>
   );
 }
