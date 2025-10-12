@@ -1,6 +1,8 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import type { IChatMessage } from "../../pages/Chat";
 import { AppContext } from "../../contexts/AppContext";
+import AppIcon from "../AppIcon";
+import { Send } from "lucide-react";
 
 const ChatControls = ({
   setChatMessages,
@@ -54,20 +56,23 @@ const ChatControls = ({
       onSubmit={(e) => handleSubmit(e)}
       className="min-h-[100px] flex gap-2"
     >
-      <button
-        disabled={!user?.connected}
-        className="bg-bg-base cursor-pointer rounded-xl text-white dark:bg-white dark:text-bg-base min-w-[100px]"
-        type="submit"
-      >
-        Send
-      </button>
       <textarea
         onChange={(e) => setTextareaValue(e.target.value)}
         disabled={!user?.connected}
         name="message"
-        className="bg-bg-base rounded-xl text-white dark:bg-white dark:text-bg-base w-full h-full p-2"
+        className="bg-bg-base rounded-xl text-white dark:bg-white
+         dark:text-bg-base w-full h-full p-4 focus-visible:outline-0"
         value={textareaValue}
       ></textarea>
+      <button
+        disabled={!user?.connected}
+        className="bg-bg-base cursor-pointer rounded-xl mt-auto
+        p-4 text-white dark:bg-white dark:text-bg-base 
+        max-w-[80px] max-h-[50px] flex items-center justify-center gap-2"
+        type="submit"
+      >
+        <AppIcon Icon={Send} />
+      </button>
     </form>
   );
 };
