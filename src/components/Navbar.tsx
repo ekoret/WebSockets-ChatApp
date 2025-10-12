@@ -1,9 +1,14 @@
 import { Link } from "@tanstack/react-router";
 import { LayoutDashboard, MessageCircle, Settings2 } from "lucide-react";
 import AppIcon from "./AppIcon";
+import { useContext } from "react";
+import { AppContext } from "../contexts/AppContext";
 
 const Navbar = () => {
-  const navLinks = [
+  const data = useContext(AppContext);
+  const user = data?.globalData.user;
+
+  const loggedInNavLinks = [
     {
       name: "Dashboard",
       icon: LayoutDashboard,
@@ -21,21 +26,44 @@ const Navbar = () => {
     },
   ];
 
+  const loggedOutNavLinks = [
+    {
+      name: "Login",
+      icon: MessageCircle,
+      to: "/login",
+    },
+  ];
+
   const navIconClasses = "max-w-[24px]";
   const navLinkClasses =
     "flex gap-4 items-center transition-colors hover:text-amber-400 dark:hover:text-indigo-400";
 
   return (
-    <nav className="flex flex-col gap-8">
-      {navLinks.map((link) => {
-        return (
-          <Link key={link.name} to={link.to} className={navLinkClasses}>
-            <AppIcon Icon={link.icon} className={navIconClasses} />
-            {link.name}
-          </Link>
-        );
-      })}
-    </nav>
+    <>
+      {user ? (
+        <nav className="flex flex-col gap-8">
+          {loggedInNavLinks.map((link) => {
+            return (
+              <Link key={link.name} to={link.to} className={navLinkClasses}>
+                <AppIcon Icon={link.icon} className={navIconClasses} />
+                {link.name}
+              </Link>
+            );
+          })}
+        </nav>
+      ) : (
+        <nav className="flex flex-col gap-8">
+          {loggedOutNavLinks.map((link) => {
+            return (
+              <Link key={link.name} to={link.to} className={navLinkClasses}>
+                <AppIcon Icon={link.icon} className={navIconClasses} />
+                {link.name}
+              </Link>
+            );
+          })}
+        </nav>
+      )}
+    </>
   );
 };
 

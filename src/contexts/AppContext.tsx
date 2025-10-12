@@ -6,7 +6,7 @@ export interface IAppContext {
 }
 
 export interface IGlobalData {
-  user: IUserState;
+  user?: IUserState;
 }
 
 export interface IUserState {

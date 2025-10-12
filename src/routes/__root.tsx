@@ -12,17 +12,7 @@ export interface LayoutProps {
 }
 
 function RootComponent() {
-  const user: IUserState = {
-    username: "ekoret",
-    connected: true,
-    loggedInAt: null,
-  };
-
-  const initialGlobalState = {
-    user,
-  };
-
-  const [globalData, setGlobalData] = React.useState(initialGlobalState);
+  const [globalData, setGlobalData] = React.useState({});
 
   return (
     <AppContext value={{ globalData, setGlobalData }}>
