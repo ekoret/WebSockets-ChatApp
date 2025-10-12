@@ -7,12 +7,6 @@ interface IconProps {
 }
 
 const AppIcon = ({ Icon, className = "" }: IconProps) => {
-  return (
-    <Icon
-      className={`text-neutral-300 h-full w-full transition-colors
-         hover:text-amber-400 dark:hover:text-indigo-400" 
-         ${className}`}
-    />
-  );
+  return <Icon className={`text-current h-full w-full${className}`} />;
 };
 export default AppIcon;
