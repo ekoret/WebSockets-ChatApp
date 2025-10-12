@@ -37,7 +37,7 @@ function useChatWindowAutoScroll(
         behavior: "smooth",
       });
     }
-  }, [chatMessages]);
+  }, [chatMessages, chatWindowRef]);
 
   // Handles first load
   useEffect(() => {
@@ -48,7 +48,7 @@ function useChatWindowAutoScroll(
       top: chatWindowEl.scrollHeight,
       behavior: "instant",
     });
-  }, []);
+  }, [chatMessages, chatWindowRef]);
 
   return true;
 }

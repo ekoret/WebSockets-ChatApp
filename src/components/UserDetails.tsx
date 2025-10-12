@@ -1,20 +1,16 @@
-import { useContext } from "react";
 import imgUrl from "../assets/neo-banana-cat.jpg";
-import { AppContext } from "../contexts/AppContext";
 import AppIcon from "./AppIcon";
 import { LogOut } from "lucide-react";
 import { useNavigate } from "@tanstack/react-router";
+import { useUserContext } from "../hooks/useUserContext";
 
 function UserDetails() {
   const navigate = useNavigate();
-  const context = useContext(AppContext);
-  const user = context?.globalData.user;
+
+  const userContext = useUserContext();
 
   const handleLogout = () => {
-    context?.setGlobalData((prev) => ({
-      ...prev,
-      user: undefined,
-    }));
+    userContext?.setUser(null);
 
     navigate({
       to: "/login",
@@ -28,7 +24,7 @@ function UserDetails() {
       </div>
       <div>
         <small>Logged in as</small>
-        <h3>{user?.username}</h3>
+        <h3>{userContext.user?.username}</h3>
       </div>
       <div
         onClick={handleLogout}

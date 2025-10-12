@@ -1,15 +1,21 @@
 import { RouterProvider } from "@tanstack/react-router";
 import { router } from "./router";
 import { useState } from "react";
-import { AppContext, type IGlobalData } from "./contexts/AppContext";
+import { UserContext, type IUserContext } from "./contexts/UserContext";
+import type User from "./classes/User";
 
 function App() {
-  const [globalData, setGlobalData] = useState<IGlobalData>({});
-  const user = globalData.user;
+  const [user, setUser] = useState<User | null>(null);
+
+  const userContextValues: IUserContext = {
+    user,
+    setUser,
+  };
+
   return (
-    <AppContext value={{ globalData, setGlobalData }}>
+    <UserContext value={userContextValues}>
       <RouterProvider router={router} context={{ user }} />
-    </AppContext>
+    </UserContext>
   );
 }
 

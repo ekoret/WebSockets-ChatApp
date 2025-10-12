@@ -1,12 +1,10 @@
 import { Link } from "@tanstack/react-router";
 import { LayoutDashboard, MessageCircle, Settings2 } from "lucide-react";
 import AppIcon from "./AppIcon";
-import { useContext } from "react";
-import { AppContext } from "../contexts/AppContext";
+import { useUserContext } from "../hooks/useUserContext";
 
 const Navbar = () => {
-  const data = useContext(AppContext);
-  const user = data?.globalData.user;
+  const userContext = useUserContext();
 
   const loggedInNavLinks = [
     {
@@ -32,7 +30,7 @@ const Navbar = () => {
 
   return (
     <>
-      {user && (
+      {userContext.user && (
         <nav className="flex flex-col gap-8">
           {loggedInNavLinks.map((link) => {
             return (

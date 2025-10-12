@@ -1,16 +1,15 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { IChatMessage } from "../../pages/Chat";
-import { AppContext } from "../../contexts/AppContext";
 import AppIcon from "../AppIcon";
 import { Send } from "lucide-react";
+import { useUserContext } from "../../hooks/useUserContext";
 
 const ChatControls = ({
   setChatMessages,
 }: {
   setChatMessages: React.Dispatch<React.SetStateAction<IChatMessage[]>>;
 }) => {
-  const data = useContext(AppContext);
-  const user = data?.globalData.user;
+  const userContext = useUserContext();
   const formRef = useRef<HTMLFormElement>(null);
 
   const [textareaValue, setTextareaValue] = useState<string>("");
@@ -58,14 +57,14 @@ const ChatControls = ({
     >
       <textarea
         onChange={(e) => setTextareaValue(e.target.value)}
-        disabled={!user?.connected}
+        disabled={!userContext.user?.connected}
         name="message"
         className="bg-bg-base rounded-xl text-white dark:bg-white
          dark:text-bg-base w-full h-full p-4 focus-visible:outline-0"
         value={textareaValue}
       ></textarea>
       <button
-        disabled={!user?.connected}
+        disabled={!userContext.user?.connected}
         className="bg-bg-base cursor-pointer rounded-xl mt-auto
         p-4 text-white dark:bg-white dark:text-bg-base 
         max-w-[80px] max-h-[50px] flex items-center justify-center gap-2"
