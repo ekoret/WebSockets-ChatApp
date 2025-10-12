@@ -1,8 +1,21 @@
 const Login = () => {
+  const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const formEl = e.target as HTMLFormElement;
+
+    const form = new FormData(formEl);
+
+    const username = form.get("username");
+    const password = form.get("password");
+
+    console.log(username, password);
+  };
+
   return (
     <div className="mx-auto max-w-[300px] text-center h-full flex flex-col justify-center">
       <h2 className="text-4xl font-bold mb-8">Login</h2>
-      <form className="flex flex-col">
+      <form className="flex flex-col" method="post" onSubmit={handleLogin}>
         <label className="text-left" htmlFor="username">
           Username
         </label>
