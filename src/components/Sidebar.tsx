@@ -3,6 +3,7 @@ import ThemeToggle from "./ThemeToggle";
 import Navbar from "./Navbar";
 import { useContext } from "react";
 import { AppContext } from "../contexts/AppContext";
+import OnlineList from "./Sidebar/OnlineList";
 
 function Sidebar() {
   const data = useContext(AppContext);
@@ -13,6 +14,7 @@ function Sidebar() {
       <h1 className="mt-20 mb-8 text-4xl font-bold">SocketChat</h1>
       <Navbar />
       <div className="mt-auto flex flex-col gap-4">
+        {user && <OnlineList />}
         <ThemeToggle />
         {user && <UserDetails />}
       </div>
