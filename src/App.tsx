@@ -3,9 +3,16 @@ import { router } from "./router";
 import { useState } from "react";
 import { UserContext, type IUserContext } from "./contexts/UserContext";
 import type User from "./classes/User";
+import { LocalStorageManager } from "./classes/LocalStorageManager";
 
 function App() {
-  const [user, setUser] = useState<User | null>(null);
+  const userLocalStorage = LocalStorageManager.getItem("user");
+
+  const initialUser: User | null = userLocalStorage
+    ? JSON.parse(userLocalStorage)
+    : null;
+
+  const [user, setUser] = useState<User | null>(initialUser);
 
   const userContextValues: IUserContext = {
     user,

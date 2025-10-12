@@ -3,6 +3,7 @@ import AppIcon from "./AppIcon";
 import { LogOut } from "lucide-react";
 import { useNavigate } from "@tanstack/react-router";
 import { useUserContext } from "../hooks/useUserContext";
+import { LocalStorageManager } from "../classes/LocalStorageManager";
 
 function UserDetails() {
   const navigate = useNavigate();
@@ -11,6 +12,8 @@ function UserDetails() {
 
   const handleLogout = () => {
     userContext?.setUser(null);
+
+    LocalStorageManager.removeItem("user");
 
     navigate({
       to: "/login",

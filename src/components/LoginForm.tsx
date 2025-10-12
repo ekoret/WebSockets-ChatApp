@@ -1,6 +1,7 @@
 import { useNavigate } from "@tanstack/react-router";
 import { useUserContext } from "../hooks/useUserContext";
 import User from "../classes/User";
+import { LocalStorageManager } from "../classes/LocalStorageManager";
 
 function LoginForm() {
   const userContext = useUserContext();
@@ -17,6 +18,8 @@ function LoginForm() {
     const password = form.get("password") as string;
 
     const user = new User(username, password);
+
+    LocalStorageManager.setItem("user", JSON.stringify(user));
 
     userContext.setUser(user);
 
