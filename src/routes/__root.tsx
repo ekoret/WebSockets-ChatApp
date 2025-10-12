@@ -1,15 +1,11 @@
 import * as React from "react";
 import { Outlet, createRootRoute } from "@tanstack/react-router";
-import { AppContext, type IUserState } from "../contexts/AppContext";
+import { AppContext } from "../contexts/AppContext";
 import Sidebar from "../components/Sidebar";
 
 export const Route = createRootRoute({
   component: RootComponent,
 });
-
-export interface LayoutProps {
-  children: React.ReactNode;
-}
 
 function RootComponent() {
   const [globalData, setGlobalData] = React.useState({});
