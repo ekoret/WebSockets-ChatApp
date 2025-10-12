@@ -9,6 +9,7 @@ interface ChatWindowProps {
 const ChatWindow = ({ chatMessages }: ChatWindowProps) => {
   const chatWindowRef = useRef<HTMLDivElement>(null);
 
+  // TODO: fix this
   useChatWindowAutoScroll(chatMessages, chatWindowRef);
 
   return (

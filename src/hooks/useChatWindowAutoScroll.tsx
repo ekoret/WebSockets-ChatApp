@@ -18,6 +18,19 @@ function useChatWindowAutoScroll(
       chatWindowEl.clientHeight -
       chatWindowEl.scrollTop;
 
+    /**
+     * TODO: fix scrolling issue when a lot
+     * of messages are sent.
+     *
+     * There is an issue where smooth scrolling
+     * is not working when a new message is added
+     *
+     * There is also another issue where if you
+     * scroll to the top of the chat window
+     * while new messages are coming in, the window
+     * moves. It should not move if the user is
+     * viewing a message earlier in history.
+     */
     if (scrollBottom <= 100) {
       chatWindowEl.scroll({
         top: chatWindowEl.scrollHeight,
