@@ -1,6 +1,7 @@
 export interface ChatSocketRequestData {
   type: "message" | "connect" | "disconnect";
   message: string;
+  sender?: string;
 }
 
 export class ChatSocket {

@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import Chat from "../pages/Chat";
 import { ChatSocket } from "../classes/ChatSocket";
 import { useEffect, useRef } from "react";
+import { useUserContext } from "../hooks/useUserContext";
 
 export const Route = createFileRoute("/chat")({
   component: RouteComponent,
@@ -9,6 +10,8 @@ export const Route = createFileRoute("/chat")({
 
 function RouteComponent() {
   const socketRef = useRef<ChatSocket | null>(null);
+  const userContext = useUserContext();
+  const username = userContext.user?.username;
 
   useEffect(() => {
     console.log("Mount");
@@ -18,7 +21,11 @@ function RouteComponent() {
 
     // Connection opened
     socketConnection.socket.addEventListener("open", (_) => {
-      socketConnection.send({ type: "connect", message: "hello" });
+      socketConnection.send({
+        type: "connect",
+        message: "hello",
+        sender: username,
+      });
     });
 
     // Listen for messages
