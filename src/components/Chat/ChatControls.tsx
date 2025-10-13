@@ -26,7 +26,7 @@ const ChatControls = () => {
 
     setGlobalChatMessages((prevMessages) => [
       ...prevMessages,
-      { sender: "ekoret", message: message.toString() },
+      { sender: userContext.user!.username, message: message.toString() },
     ]);
 
     setTextareaValue("");

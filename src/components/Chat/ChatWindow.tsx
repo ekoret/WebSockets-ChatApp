@@ -18,7 +18,9 @@ const ChatWindow = () => {
       {[...globalChatMessages].reverse().map((message, index) => {
         return (
           <div key={index}>
-            <h3 className="font-bold">{message.sender} says:</h3>
+            {message.sender && (
+              <h3 className="font-bold">{message.sender} says:</h3>
+            )}
             <p>{message.message}</p>
           </div>
         );
