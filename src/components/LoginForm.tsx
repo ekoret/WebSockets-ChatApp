@@ -15,9 +15,9 @@ function LoginForm() {
     const form = new FormData(formEl);
 
     const username = form.get("username") as string;
-    const password = form.get("password") as string;
+    // const password = form.get("password") as string;
 
-    const user = new User(username, password);
+    const user = new User(username);
 
     LocalStorageManager.setItem("user", JSON.stringify(user));
 
