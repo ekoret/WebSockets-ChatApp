@@ -1,15 +1,14 @@
-import React from "react";
-import type { IChatMessage } from "../../pages/Chat";
+import { useMessageContext } from "../../hooks/useMessageContext";
 import AppIcon from "../AppIcon";
 import { Eraser } from "lucide-react";
 
-export interface ClearChatButtonProps {
-  setChatMessages: React.Dispatch<React.SetStateAction<IChatMessage[]>>;
-}
+const ClearChatButton = () => {
+  const messageContext = useMessageContext();
 
-const ClearChatButton = ({ setChatMessages }: ClearChatButtonProps) => {
+  const setGlobalChatMessages = messageContext.setGlobalChatMessages;
+
   const handleOnClick = () => {
-    setChatMessages([]);
+    setGlobalChatMessages([]);
   };
 
   return (

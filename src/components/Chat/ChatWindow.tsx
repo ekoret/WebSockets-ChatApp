@@ -1,23 +1,21 @@
 import { useRef } from "react";
-import type { IChatMessage } from "../../pages/Chat";
 import useChatWindowAutoScroll from "../../hooks/useChatWindowAutoScroll";
+import { useMessageContext } from "../../hooks/useMessageContext";
 
-interface ChatWindowProps {
-  chatMessages: IChatMessage[];
-}
-
-const ChatWindow = ({ chatMessages }: ChatWindowProps) => {
+const ChatWindow = () => {
   const chatWindowRef = useRef<HTMLDivElement>(null);
+  const messageContext = useMessageContext();
+  const globalChatMessages = messageContext.globalChatMessages;
 
   // TODO: fix this
-  useChatWindowAutoScroll(chatMessages, chatWindowRef);
+  useChatWindowAutoScroll(globalChatMessages, chatWindowRef);
 
   return (
     <div
       ref={chatWindowRef}
       className="flex-1 overflow-y-auto mb-4 flex flex-col-reverse gap-4"
     >
-      {[...chatMessages].reverse().map((message, index) => {
+      {[...globalChatMessages].reverse().map((message, index) => {
         return (
           <div key={index}>
             <h3 className="font-bold">{message.sender} says:</h3>

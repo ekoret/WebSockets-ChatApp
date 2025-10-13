@@ -1,15 +1,14 @@
 import { useEffect, useRef, useState } from "react";
-import type { IChatMessage } from "../../pages/Chat";
 import AppIcon from "../AppIcon";
 import { Send } from "lucide-react";
 import { useUserContext } from "../../hooks/useUserContext";
+import { useMessageContext } from "../../hooks/useMessageContext";
 
-const ChatControls = ({
-  setChatMessages,
-}: {
-  setChatMessages: React.Dispatch<React.SetStateAction<IChatMessage[]>>;
-}) => {
+const ChatControls = () => {
   const userContext = useUserContext();
+  const messageContext = useMessageContext();
+  const { setGlobalChatMessages } = messageContext;
+
   const formRef = useRef<HTMLFormElement>(null);
 
   const [textareaValue, setTextareaValue] = useState<string>("");
@@ -25,7 +24,7 @@ const ChatControls = ({
 
     if (!message) return;
 
-    setChatMessages((prevMessages) => [
+    setGlobalChatMessages((prevMessages) => [
       ...prevMessages,
       { sender: "ekoret", message: message.toString() },
     ]);

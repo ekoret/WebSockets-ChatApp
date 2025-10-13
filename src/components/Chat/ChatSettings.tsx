@@ -1,12 +1,7 @@
-import type { IChatMessage } from "../../pages/Chat";
 import ClearChatButton from "./ClearChatButton";
 import { useUserContext } from "../../hooks/useUserContext";
 
-export interface ChatSettingsProps {
-  setChatMessages: React.Dispatch<React.SetStateAction<IChatMessage[]>>;
-}
-
-const ChatSettings = ({ setChatMessages }: ChatSettingsProps) => {
+const ChatSettings = () => {
   const userContext = useUserContext();
 
   return (
@@ -17,7 +12,7 @@ const ChatSettings = ({ setChatMessages }: ChatSettingsProps) => {
           className={`w-4 aspect-square rounded-full ${userContext.user?.connected ? "bg-green-500" : "bg-red-500"}`}
         ></div>
       </small>
-      <ClearChatButton setChatMessages={setChatMessages} />
+      <ClearChatButton />
     </div>
   );
 };
