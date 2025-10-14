@@ -1,9 +1,11 @@
 import { createContext } from "react";
-import type { IChatMessage } from "../pages/Chat";
+import type { WebSocketMessage } from "../hooks/useWebSocket";
 
 interface IMessageContext {
-  globalChatMessages: IChatMessage[];
-  setGlobalChatMessages: React.Dispatch<React.SetStateAction<IChatMessage[]>>;
+  globalChatMessages: WebSocketMessage[];
+  setGlobalChatMessages: React.Dispatch<
+    React.SetStateAction<WebSocketMessage[]>
+  >;
 }
 
 export const MessageContext = createContext<IMessageContext | null>(null);

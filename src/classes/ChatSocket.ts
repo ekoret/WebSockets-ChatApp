@@ -1,8 +1,4 @@
-export interface ChatSocketRequestData {
-  type: "message" | "connect" | "disconnect";
-  message: string;
-  sender?: string;
-}
+import type { ChatSocketMessage } from "../global";
 
 export class ChatSocket {
   socket: WebSocket;
@@ -10,7 +6,7 @@ export class ChatSocket {
     this.socket = new WebSocket(`ws://localhost:${port}`);
   }
 
-  public send(requestData: ChatSocketRequestData) {
+  public send(requestData: ChatSocketMessage) {
     this.socket.send(JSON.stringify(requestData));
   }
 }

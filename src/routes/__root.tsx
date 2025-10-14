@@ -5,6 +5,8 @@ import {
 } from "@tanstack/react-router";
 import Sidebar from "../components/Sidebar";
 import type User from "../classes/User";
+import { WebSocketContext } from "../contexts/WebSocketContext";
+import { useWebSocket } from "../hooks/useWebSocket";
 
 interface GlobalRouterContext {
   user: User | null;
@@ -31,15 +33,19 @@ export const Route = createRootRouteWithContext<GlobalRouterContext>()({
 });
 
 function RootComponent() {
+  const [isReady, latestMessage, send] = useWebSocket();
+
   return (
-    <div className="flex h-full gap-4">
-      <Sidebar />
-      <main
-        className="bg-surface text-text-base
-          shadow-[inset_-10px_20px_80px_8px_rgba(0,0,0,0.35)] flex-1 rounded-4xl p-6"
-      >
-        <Outlet />
-      </main>
-    </div>
+    <WebSocketContext value={{ isReady, latestMessage, send }}>
+      <div className="flex h-full gap-4">
+        <Sidebar />
+        <main
+          className="bg-surface text-text-base
+        shadow-[inset_-10px_20px_80px_8px_rgba(0,0,0,0.35)] flex-1 rounded-4xl p-6"
+        >
+          <Outlet />
+        </main>
+      </div>
+    </WebSocketContext>
   );
 }

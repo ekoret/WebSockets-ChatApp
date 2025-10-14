@@ -1,7 +1,7 @@
 import { RouterProvider } from "@tanstack/react-router";
 import { router } from "./router";
 import { useState } from "react";
-import { UserContext, type IUserContext } from "./contexts/UserContext";
+import { UserContext } from "./contexts/UserContext";
 import type User from "./classes/User";
 import { LocalStorageManager } from "./classes/LocalStorageManager";
 
@@ -14,13 +14,8 @@ function App() {
 
   const [user, setUser] = useState<User | null>(initialUser);
 
-  const userContextValues: IUserContext = {
-    user,
-    setUser,
-  };
-
   return (
-    <UserContext value={userContextValues}>
+    <UserContext value={{ user, setUser }}>
       <RouterProvider router={router} context={{ user }} />
     </UserContext>
   );

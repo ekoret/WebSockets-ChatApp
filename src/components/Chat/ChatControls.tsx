@@ -1,13 +1,14 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import AppIcon from "../AppIcon";
 import { Send } from "lucide-react";
 import { useUserContext } from "../../hooks/useUserContext";
-import { useMessageContext } from "../../hooks/useMessageContext";
+import { WebSocketContext } from "../../contexts/WebSocketContext";
 
 const ChatControls = () => {
   const userContext = useUserContext();
-  const messageContext = useMessageContext();
-  const { setGlobalChatMessages } = messageContext;
+
+  const socketContext = useContext(WebSocketContext);
+  const { send } = socketContext!;
 
   const formRef = useRef<HTMLFormElement>(null);
 
@@ -20,15 +21,11 @@ const ChatControls = () => {
 
     const form = new FormData(formEl);
 
-    const message = form.get("message");
+    const message = form.get("message") as string | null;
 
     if (!message) return;
 
-    setGlobalChatMessages((prevMessages) => [
-      ...prevMessages,
-      { sender: userContext.user!.username, message: message.toString() },
-    ]);
-
+    send({ type: "message", message });
     setTextareaValue("");
   };
 
