@@ -28,13 +28,37 @@ export const useWebSocket = (
     socketRef.current = socket;
 
     socket.onopen = () => {
+      console.log(`Connected to server as ${user.username}`);
+      socket.send(
+        JSON.stringify({
+          type: "connect",
+          sender: user.username,
+          message: `${user.username} has joined the chat!`,
+        })
+      );
       setIsReady(true);
       if (user) setUser({ ...user, connected: true });
     };
-    socket.onclose = () => setIsReady(false);
-    socket.onmessage = (event) => setLatestMessage(event.data);
+    socket.onclose = () => {
+      setIsReady(false);
+    };
+    socket.onmessage = (event) => {
+      console.log("Message from server received: ", event.data);
+      setLatestMessage(JSON.parse(event.data));
+    };
 
-    return () => socket.close();
+    return () => {
+      /**
+       * TODO: is adding setTimeout allowed in useEffect?
+       *
+       * added this because when disconnecting,
+       * the tcp handshake wouoldnt complete when
+       * sending the disconnect message and closing.
+       */
+      setTimeout(() => {
+        socket.close();
+      }, 50);
+    };
   }, [url, user?.username]);
 
   const send = (data: WebSocketMessage) => {

@@ -7,6 +7,7 @@ import Sidebar from "../components/Sidebar";
 import type User from "../classes/User";
 import { WebSocketContext } from "../contexts/WebSocketContext";
 import { useWebSocket } from "../hooks/useWebSocket";
+import { ConnectedUsersProvider } from "../contexts/ConnectedUsersContext";
 
 interface GlobalRouterContext {
   user: User | null;

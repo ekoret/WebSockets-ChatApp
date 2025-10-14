@@ -4,20 +4,30 @@ import { LogOut } from "lucide-react";
 import { useNavigate } from "@tanstack/react-router";
 import { useUserContext } from "../hooks/useUserContext";
 import { LocalStorageManager } from "../classes/LocalStorageManager";
+import { WebSocketContext } from "../contexts/WebSocketContext";
+import { useContext } from "react";
 
 function UserDetails() {
   const navigate = useNavigate();
 
-  const userContext = useUserContext();
+  const { user, setUser } = useUserContext();
+  const { send } = useContext(WebSocketContext)!;
 
   const handleLogout = () => {
-    userContext?.setUser(null);
-
-    LocalStorageManager.removeItem("user");
-
-    navigate({
-      to: "/login",
+    send({
+      type: "disconnect",
+      sender: user!.username,
+      message: `${user!.username} has left the chat..`,
     });
+    setTimeout(() => {
+      setUser(null);
+
+      LocalStorageManager.removeItem("user");
+
+      navigate({
+        to: "/login",
+      });
+    }, 200);
   };
 
   return (
@@ -27,7 +37,7 @@ function UserDetails() {
       </div>
       <div>
         <small>Logged in as</small>
-        <h3>{userContext.user?.username}</h3>
+        <h3>{user?.username}</h3>
       </div>
       <div
         onClick={handleLogout}

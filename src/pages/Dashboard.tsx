@@ -17,7 +17,7 @@ function Dashboard() {
         <div className="mb-8">
           <h2 className="text-3xl mb-4">
             Welcome,<br></br>
-            <span className="text-4xl">{user.username}</span>
+            <span className="text-4xl">{user?.username}</span>
           </h2>
           <p>You're all set. Jump into the chat!</p>
         </div>
@@ -25,13 +25,15 @@ function Dashboard() {
           <small>You logged in at</small>
 
           <h3 className="font-bold">
-            {new Date(user.connectedAt).toLocaleTimeString()}
+            {new Date(user?.connectedAt).toLocaleTimeString()}
           </h3>
         </div>
         <div className="mb-4">
           <small>Connection Status</small>
 
-          <h3 className="font-bold">{user.connected ? "Online" : "Offline"}</h3>
+          <h3 className="font-bold">
+            {user?.connected ? "Online" : "Offline"}
+          </h3>
         </div>
       </div>
     </div>
