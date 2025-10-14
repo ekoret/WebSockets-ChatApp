@@ -25,7 +25,11 @@ const ChatControls = () => {
 
     if (!message) return;
 
-    send({ type: "message", message });
+    send({
+      type: "message",
+      message,
+      sender: userContext.user?.username,
+    });
     setTextareaValue("");
   };
 
