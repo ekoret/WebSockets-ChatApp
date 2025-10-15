@@ -1,10 +1,10 @@
 import { useEffect, type RefObject } from "react";
-import type { IChatMessage } from "../pages/Chat";
+import type { ChatMessage } from "../global";
 
 export type ChatWindowRef = RefObject<HTMLDivElement | null>;
 
 function useChatWindowAutoScroll(
-  chatMessages: IChatMessage[],
+  chatMessages: ChatMessage[],
   chatWindowRef: ChatWindowRef
 ): boolean {
   useEffect(() => {

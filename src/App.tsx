@@ -1,24 +1,31 @@
 import { RouterProvider } from "@tanstack/react-router";
 import { router } from "./router";
-import { useState } from "react";
-import { UserContext } from "./contexts/UserContext";
-import type User from "./classes/User";
-import { LocalStorageManager } from "./classes/LocalStorageManager";
+import { WebSocketProvider } from "./providers/WebSocketProvider";
+import UserProvider from "./providers/UserProvider";
+import { useUserContext } from "./hooks/useUserContext";
 
+/**
+ * Wrap app in global providers.
+ */
 function App() {
-  const userLocalStorage = LocalStorageManager.getItem("user");
-
-  const initialUser: User | null = userLocalStorage
-    ? JSON.parse(userLocalStorage)
-    : null;
-
-  const [user, setUser] = useState<User | null>(initialUser);
-
   return (
-    <UserContext value={{ user, setUser }}>
-      <RouterProvider router={router} context={{ user }} />
-    </UserContext>
+    <UserProvider>
+      <WebSocketProvider>
+        <RouterWithContextProvider />
+      </WebSocketProvider>
+    </UserProvider>
   );
+}
+
+/**
+ * Provide global state to the router context.
+ * This will enable handling state during route
+ * changes.
+ */
+function RouterWithContextProvider() {
+  const { user } = useUserContext();
+
+  return <RouterProvider router={router} context={{ user }} />;
 }
 
 export default App;

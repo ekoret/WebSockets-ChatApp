@@ -1,23 +1,22 @@
-import { useContext, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import useChatWindowAutoScroll from "../../hooks/useChatWindowAutoScroll";
 import { useMessageContext } from "../../hooks/useMessageContext";
-import { WebSocketContext } from "../../contexts/WebSocketContext";
+import { useWebSocketContext } from "../../hooks/useWebSocketContext";
 
 const ChatWindow = () => {
   const chatWindowRef = useRef<HTMLDivElement>(null);
-  const messageContext = useMessageContext();
-  const globalChatMessages = messageContext.globalChatMessages;
-  const { latestMessage } = useContext(WebSocketContext);
+  const { globalChatMessages, setGlobalChatMessages } = useMessageContext();
+  const { latestMessage } = useWebSocketContext();
 
   // TODO: fix this
   useChatWindowAutoScroll(globalChatMessages, chatWindowRef);
 
   useEffect(() => {
     if (!latestMessage) return;
-    messageContext.setGlobalChatMessages((prev) => {
+    setGlobalChatMessages((prev) => {
       return [...prev, latestMessage];
     });
-  }, [latestMessage]);
+  }, [latestMessage, setGlobalChatMessages]);
 
   return (
     <div

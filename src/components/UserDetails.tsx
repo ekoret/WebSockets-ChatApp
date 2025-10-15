@@ -4,14 +4,13 @@ import { LogOut } from "lucide-react";
 import { useNavigate } from "@tanstack/react-router";
 import { useUserContext } from "../hooks/useUserContext";
 import { LocalStorageManager } from "../classes/LocalStorageManager";
-import { WebSocketContext } from "../contexts/WebSocketContext";
-import { useContext } from "react";
+import { useWebSocketContext } from "../hooks/useWebSocketContext";
 
 function UserDetails() {
   const navigate = useNavigate();
 
   const { user, setUser } = useUserContext();
-  const { send } = useContext(WebSocketContext)!;
+  const { send } = useWebSocketContext();
 
   const handleLogout = () => {
     send({

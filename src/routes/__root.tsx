@@ -5,14 +5,18 @@ import {
 } from "@tanstack/react-router";
 import Sidebar from "../components/Sidebar";
 import type User from "../classes/User";
-import { WebSocketContext } from "../contexts/WebSocketContext";
-import { useWebSocket } from "../hooks/useWebSocket";
-import { ConnectedUsersProvider } from "../contexts/ConnectedUsersContext";
 
 interface GlobalRouterContext {
   user: User | null;
 }
 
+/**
+ * Runs everytime a the route is changed.
+ *
+ * In this case it checks if there is a user
+ * or not in the context to automatically log
+ * a user out if they're not logged in.
+ */
 export const Route = createRootRouteWithContext<GlobalRouterContext>()({
   component: RootComponent,
   beforeLoad: ({ context, location }) => {
@@ -33,20 +37,19 @@ export const Route = createRootRouteWithContext<GlobalRouterContext>()({
   },
 });
 
+/**
+ * The main layout.
+ */
 function RootComponent() {
-  const [isReady, latestMessage, send] = useWebSocket();
-
   return (
-    <WebSocketContext value={{ isReady, latestMessage, send }}>
-      <div className="flex h-full gap-4">
-        <Sidebar />
-        <main
-          className="bg-surface text-text-base
-        shadow-[inset_-10px_20px_80px_8px_rgba(0,0,0,0.35)] flex-1 rounded-4xl p-6"
-        >
-          <Outlet />
-        </main>
-      </div>
-    </WebSocketContext>
+    <div className="flex h-full gap-4">
+      <Sidebar />
+      <main
+        className="bg-surface text-text-base
+          shadow-[inset_-10px_20px_80px_8px_rgba(0,0,0,0.35)] flex-1 rounded-4xl p-6"
+      >
+        <Outlet />
+      </main>
+    </div>
   );
 }

@@ -1,21 +1,10 @@
-import { createContext, useState } from "react";
-import type User from "../classes/User";
-import type { ProviderProps } from "../global";
+import { createContext } from "react";
+import type { OnlineUser } from "../global";
 
-interface IConnectedUsersContext {
-  users: User[];
-  setUsers: React.Dispatch<React.SetStateAction<User[]>>;
+interface ConnectedUsersContext {
+  users: OnlineUser[];
+  setUsers: React.Dispatch<React.SetStateAction<OnlineUser[]>>;
 }
 
 export const ConnectedUsersContext =
-  createContext<IConnectedUsersContext | null>(null);
-
-export const ConnectedUsersProvider = ({ children }: ProviderProps) => {
-  const [users, setUsers] = useState<User[]>([]);
-
-  return (
-    <ConnectedUsersContext value={{ users, setUsers }}>
-      {children}
-    </ConnectedUsersContext>
-  );
-};
+  createContext<ConnectedUsersContext | null>(null);

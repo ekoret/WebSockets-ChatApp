@@ -1,12 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useUserContext } from "./useUserContext";
-
-export interface WebSocketMessage {
-  type: "connect" | "disconnect" | "message";
-  message: string;
-  sender?: string;
-  sentAt?: Date;
-}
+import type { WebSocketMessage } from "../global";
 
 export const useWebSocket = (
   url: string = "ws://localhost:8765"
@@ -59,7 +53,7 @@ export const useWebSocket = (
         socket.close();
       }, 50);
     };
-  }, [url, user?.username]);
+  }, [url, user?.username, setUser]);
 
   const send = (data: WebSocketMessage) => {
     if (socketRef.current?.readyState !== WebSocket.OPEN) {

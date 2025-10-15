@@ -11,24 +11,24 @@ import ThemeToggle from "./ThemeToggle";
 import Navbar from "./Navbar";
 import OnlineList from "./Sidebar/OnlineList";
 import { useUserContext } from "../hooks/useUserContext";
-import { ConnectedUsersProvider } from "../contexts/ConnectedUsersContext";
+import { ConnectedUsersProvider } from "../providers/ConnectedUsersProvider";
 
 function Sidebar() {
-  const userContext = useUserContext();
+  const { user } = useUserContext();
 
   return (
     <aside className="bg-sidebar flex flex-col gap-2 min-w-[250px] max-w[300px]">
       <h1 className="mt-20 mb-8 text-4xl font-bold">SocketChat</h1>
       <Navbar />
       <div className="mt-auto flex flex-col gap-4">
-        {userContext.user && (
+        {user && (
           <ConnectedUsersProvider>
             <OnlineList />
           </ConnectedUsersProvider>
         )}
 
         <ThemeToggle />
-        {userContext.user && <UserDetails />}
+        {user && <UserDetails />}
       </div>
     </aside>
   );

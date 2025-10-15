@@ -1,14 +1,12 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import AppIcon from "../AppIcon";
 import { Send } from "lucide-react";
 import { useUserContext } from "../../hooks/useUserContext";
-import { WebSocketContext } from "../../contexts/WebSocketContext";
+import { useWebSocketContext } from "../../hooks/useWebSocketContext";
 
 const ChatControls = () => {
   const userContext = useUserContext();
-
-  const socketContext = useContext(WebSocketContext);
-  const { send } = socketContext!;
+  const { send } = useWebSocketContext();
 
   const formRef = useRef<HTMLFormElement>(null);
 

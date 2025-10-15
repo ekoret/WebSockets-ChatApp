@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import type { WebSocketMessage } from "../hooks/useWebSocket";
+import type { WebSocketMessage } from "../global";
 
 interface IMessageContext {
   globalChatMessages: WebSocketMessage[];
