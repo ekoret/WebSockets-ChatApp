@@ -14,18 +14,22 @@ function LoginForm() {
 
     const form = new FormData(formEl);
 
-    const username = form.get("username") as string;
-    // const password = form.get("password") as string;
+    const username = form.get("username") as string | null;
+    const password = form.get("password") as string | null;
 
-    const user = new User(username);
+    // TODO: add proper checking before submitting
+    if (!username || !password)
+      throw new Error(
+        "Username or password for some reason null on login submit"
+      );
 
-    LocalStorageManager.setItem("user", JSON.stringify(user));
+    // LocalStorageManager.setItem("user", JSON.stringify(user));
 
-    userContext.setUser(user);
+    // userContext.setUser(user);
 
-    navigate({
-      to: "/",
-    });
+    // navigate({
+    //   to: "/",
+    // });
   };
 
   return (
