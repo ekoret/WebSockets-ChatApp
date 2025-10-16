@@ -1,11 +1,11 @@
 export default class User {
+  public id: number;
   public username: string;
-  public connected: boolean;
   public connectedAt: Date;
 
-  constructor(username: string) {
+  constructor(id: number, username: string, connectedAt: Date) {
+    this.id = id;
     this.username = username;
-    this.connected = false;
     this.connectedAt = new Date();
   }
 }

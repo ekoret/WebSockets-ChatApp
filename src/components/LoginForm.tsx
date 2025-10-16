@@ -2,12 +2,13 @@ import { useNavigate } from "@tanstack/react-router";
 import { useUserContext } from "../hooks/useUserContext";
 import User from "../classes/User";
 import { LocalStorageManager } from "../classes/LocalStorageManager";
+import { AuthService } from "../classes/AuthService";
 
 function LoginForm() {
   const userContext = useUserContext();
   const navigate = useNavigate();
 
-  const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const formEl = e.target as HTMLFormElement;
@@ -23,13 +24,25 @@ function LoginForm() {
         "Username or password for some reason null on login submit"
       );
 
-    // LocalStorageManager.setItem("user", JSON.stringify(user));
+    const user = await AuthService.login({
+      username,
+      password,
+    });
 
-    // userContext.setUser(user);
+    if (!user) {
+      // TODO: add ui update when cannot log in
+      console.log("Could not login, user is: ", user);
+      return;
+    } else {
+      console.log("Logged in successfully, user is: ", user);
+      LocalStorageManager.setItem("user", JSON.stringify(user));
 
-    // navigate({
-    //   to: "/",
-    // });
+      userContext.setUser(user);
+
+      navigate({
+        to: "/",
+      });
+    }
   };
 
   return (

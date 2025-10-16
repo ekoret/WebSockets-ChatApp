@@ -13,7 +13,6 @@ export class AuthService {
   private static PORT = 3000;
   private static BASE_URL = `http://localhost:${AuthService.PORT}`;
   private static AUTH_ENDPOINT = `${AuthService.BASE_URL}/auth`;
-  private static API_ENDPOINT = `${AuthService.BASE_URL}/api`;
 
   public static async login(data: LoginDataRequest) {
     const { username, password } = data;
@@ -30,15 +29,22 @@ export class AuthService {
       body: JSON.stringify({ username, password }),
     };
 
-    const response = await fetch(`${AuthService.AUTH_ENDPOINT}/login`, options)
-      .then((res) => res.json())
-      .then((data) => console.log(data))
-      .catch((e) => {
-        console.log(e);
-        throw new Error("Error logging in user");
-      });
+    try {
+      const response = await fetch(
+        `${AuthService.AUTH_ENDPOINT}/login`,
+        options
+      );
 
-    console.log("Response result: ", response);
-    return response;
+      const responseJson = await response.json();
+
+      if (response.ok) {
+        return responseJson;
+      }
+
+      return false;
+    } catch (error) {
+      console.log("Network error: ", error);
+    }
+    return false;
   }
 }
