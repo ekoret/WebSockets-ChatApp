@@ -9,17 +9,19 @@ export interface LoginDataResponse {
   connectedAt: Date;
 }
 
+export interface LoginErrorResponse {
+  error: string;
+}
+
 export class AuthService {
   private static PORT = 3000;
   private static BASE_URL = `http://localhost:${AuthService.PORT}`;
   private static AUTH_ENDPOINT = `${AuthService.BASE_URL}/auth`;
 
-  public static async login(data: LoginDataRequest) {
+  public static async login(
+    data: LoginDataRequest
+  ): Promise<LoginDataResponse | LoginErrorResponse> {
     const { username, password } = data;
-
-    // TODO: is check needed is handleLogin is handling it?
-    if (!username || !password)
-      throw new Error("Missing username or password when attempting to login");
 
     const options: RequestInit = {
       method: "POST",
@@ -35,16 +37,21 @@ export class AuthService {
         options
       );
 
-      const responseJson = await response.json();
+      const responseJson: LoginDataResponse = await response.json();
 
       if (response.ok) {
         return responseJson;
       }
 
-      return false;
+      console.log("Unknown error occured: ", response);
+      return {
+        error: "Unknown error occured.",
+      };
     } catch (error) {
       console.log("Network error: ", error);
+      return {
+        error: "Network error. Please try again later.",
+      };
     }
-    return false;
   }
 }
