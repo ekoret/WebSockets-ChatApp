@@ -1,6 +1,5 @@
 import { useNavigate } from "@tanstack/react-router";
 import { useUserContext } from "../hooks/useUserContext";
-import User from "../classes/User";
 import { LocalStorageManager } from "../classes/LocalStorageManager";
 import { AuthService } from "../classes/AuthService";
 
