@@ -3,7 +3,7 @@ import { useUserContext } from "./useUserContext";
 import type { WebSocketMessage } from "../global";
 
 export const useWebSocket = (
-  url: string = "ws://localhost:8765"
+  url: string = "ws://localhost:8080"
 ): [boolean, WebSocketMessage | null, (data: WebSocketMessage) => void] => {
   const [isReady, setIsReady] = useState<boolean>(false);
   const [latestMessage, setLatestMessage] = useState<WebSocketMessage | null>(
@@ -26,6 +26,7 @@ export const useWebSocket = (
       socket.send(
         JSON.stringify({
           type: "connect",
+          roomId: 0,
           sender: user.username,
           message: `${user.username} has joined the chat!`,
         })

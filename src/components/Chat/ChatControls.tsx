@@ -24,6 +24,7 @@ const ChatControls = () => {
     if (!message) return;
 
     send({
+      roomId: 0,
       type: "message",
       message,
       sender: userContext.user?.username,

@@ -6,6 +6,7 @@ export interface ChatSocketMessage {
 }
 
 export interface WebSocketMessage {
+  roomId: number;
   type: "connect" | "disconnect" | "message";
   message: string;
   sender?: string;
